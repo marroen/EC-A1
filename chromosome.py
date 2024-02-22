@@ -1,4 +1,4 @@
 from bitarray import bitarray
 
 class Chromosome:
-    data = 0
+    data = bitarray(40)
