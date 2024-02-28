@@ -39,7 +39,6 @@ def sub(bitstring, k, d):
     if len(bitstring) == k:
         return k
     else:
-        # todo d = 2.5
         return deceive(k, d, ones)
 
 def deceive(k, d, ones):
