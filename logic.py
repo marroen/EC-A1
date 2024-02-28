@@ -21,13 +21,13 @@ def tightTrap(chromosome):
     #d = 2.5
 
     bitstring = chromosome.data
-    ones = countOnes(bitstring)
     m = int(len(bitstring)/k - 1)
 
     fitness = 0
     for j in range(0, m+1):
         substring = bitstring[j*k:j*k+k]
-        fitness += sub(substring, k, d)
+        ones = countOnes(substring)
+        fitness += sub(ones, k, d)
 
     return fitness
 
@@ -36,8 +36,7 @@ def tightTrap(chromosome):
 def countOnes(bitstring):
     return bitstring.count(1)
 
-def sub(bitstring, k, d):
-    ones = countOnes(bitstring)
+def sub(ones, k, d):
     if ones == k:
         return k
     else:
