@@ -3,7 +3,7 @@ from chromosome import Chromosome
 
 def init():
     population = createRandomPopulation(10)
-    tightTrap(population[0])
+    print("first chromosome fitness: ", tightTrap(population[0]))
 
 def createRandomPopulation(n):
     population = []
@@ -24,10 +24,12 @@ def tightTrap(chromosome):
     ones = countOnes(bitstring)
     m = int(len(bitstring)/k - 1)
 
+    fitness = 0
     for j in range(0, m+1):
         substring = bitstring[j*k:j*k+k]
-        print(substring)
-        sub(substring, k, d)
+        fitness += sub(substring, k, d)
+
+    return fitness
 
 # todo def looseTrap(chromosome):
 
@@ -36,7 +38,7 @@ def countOnes(bitstring):
 
 def sub(bitstring, k, d):
     ones = countOnes(bitstring)
-    if len(bitstring) == k:
+    if ones == k:
         return k
     else:
         return deceive(k, d, ones)
