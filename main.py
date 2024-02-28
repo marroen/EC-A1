@@ -1,6 +1,6 @@
 import logic
 
 def main():
-    print(logic.init())
+    logic.init()
 
 main()
