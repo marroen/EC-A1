@@ -1,14 +1,9 @@
 from chromosome import Chromosome 
 #import random
 
-def init():
+def init(k, d):
     population = create_random_population(10)
-    k = 4
-    # assuming deceptive trap
-    d = 1
-    # assuming non-deceptive trap
-    # d = 2.5
-    
+   
     tight_fitness = tight_trap(population[0], k, d)
     loose_fitness = loose_trap(population[0], k, d)
     print("first chromosome (tight) fitness: ", tight_fitness)
