@@ -2,10 +2,10 @@ from chromosome import Chromosome
 #import random
 
 def init():
-    population = createRandomPopulation(10)
-    print("first chromosome fitness: ", tightTrap(population[0]))
+    population = create_random_population(10)
+    print("first chromosome fitness: ", tight_trap(population[0]))
 
-def createRandomPopulation(n):
+def create_random_population(n):
     population = []
     i = 0
     while i <= n:
@@ -13,7 +13,7 @@ def createRandomPopulation(n):
         i += 1
     return population
 
-def tightTrap(chromosome):
+def tight_trap(chromosome):
     k = 4
     # assuming deceptive trap function
     d = 1
@@ -26,14 +26,14 @@ def tightTrap(chromosome):
     fitness = 0
     for j in range(0, m+1):
         substring = bitstring[j*k:j*k+k]
-        ones = countOnes(substring)
+        ones = count_ones(substring)
         fitness += sub(ones, k, d)
 
     return fitness
 
-# todo def looseTrap(chromosome):
+# todo def loose_trap(chromosome):
 
-def countOnes(bitstring):
+def count_ones(bitstring):
     return bitstring.count(1)
 
 def sub(ones, k, d):
