@@ -3,11 +3,11 @@ from util import count_ones, multi_fit_func
 
 def init(n, fit_func, cross_func, k, d):
     population = create_random_population(n)
-    run(population, fit_func, cross_func, k, d)
+    run(n, population, fit_func, cross_func, k, d)
 
-def run(init_population, fit_func, cross_func, k, d):
+def run(n, init_population, fit_func, cross_func, k, d):
     population = init_population
-    for i in range(0, 10):
+    for i in range(0, n):
         print("------------")
         print("generation: ", i)
         print("------------")
