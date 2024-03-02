@@ -8,6 +8,7 @@ def init(n, fit_func, cross_func, k, d):
 def run(n, init_population, fit_func, cross_func, k, d):
     population = init_population
     for i in range(0, n):
+        # TODO: shuffle population per i
         print("------------")
         print("generation: ", i)
         print("------------")
@@ -16,6 +17,7 @@ def run(n, init_population, fit_func, cross_func, k, d):
         # flatten list
         population = [Chromosome(x) for xs in uniform_fam for x in xs]
         print("population:", population)
+    # TODO: visualize bitstring(s) 
 
 def create_random_population(n):
     population = []
