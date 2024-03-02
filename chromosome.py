@@ -5,17 +5,17 @@ import random
 
 class Chromosome:
 
-    def __init__(self):
-        self.data = urandom(40)
+    def __init__(self, data = None):
+        if data is None:
+            data = urandom(40)
+        self.data = data
 
     def two_point(self, second_p):
-        # todo two_point
 
         # random a and b within l
         # resulting in segments 0,1,2
         # 1st child flips segment 1
         # 2nd child flips segment 0 and 2
-        print("two_point")
         first_p = self.data
         n = len(first_p)
 
@@ -51,10 +51,8 @@ class Chromosome:
 
 
     def uniform(self, second_p):
-        # todo uniform
         
         # for each bit, randomly (!)flip
-        print("uniform")
         first_p = self.data
         n = len(first_p)
         
