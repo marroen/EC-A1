@@ -1,22 +1,24 @@
 from chromosome import Chromosome
 from util import count_ones, multi_fit_func
 
-def init(n, fit_func, cross_func, k, d):
-    population = create_random_population(n)
-    run(n, population, fit_func, cross_func, k, d)
+def init(l, n, fit_func, cross_func, k, d):
+    init_population = create_random_population(n)
+    run(l, init_population, fit_func, cross_func, k, d)
 
-def run(n, init_population, fit_func, cross_func, k, d):
+def run(l, init_population, fit_func, cross_func, k, d):
     population = init_population
-    for i in range(0, n):
+    for i in range(0, l):
         # TODO: shuffle population per i
         print("------------")
         print("generation: ", i)
         print("------------")
-        uniform_fam = cross_func(population, fit_func)
+        selected = cross_func(population, fit_func)
 
         # flatten list
-        population = [Chromosome(x) for xs in uniform_fam for x in xs]
-        print("population:", population)
+        population = [Chromosome(x) for xs in selected for x in xs]
+        #print("population:", population)
+        for chromosome in population:
+            print(chromosome.data)
     # TODO: visualize bitstring(s) 
 
 def create_random_population(n):
@@ -44,6 +46,9 @@ def select_two_point(population, fit_func):
             final_fam = fam_comp(fam[0], fam[1], fit_func)
             selected.append(final_fam)
     return selected
+
+# todo def fam_comp(parents, children, fit_func):
+
 
 def fam_comp(parents, children, fit_func):
     p_fits = multi_fit_func(parents, fit_func)

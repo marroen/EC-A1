@@ -1,7 +1,11 @@
 import logic
+import util
 
 def main():
     # number of generations
+    l = 20
+
+    # population size
     n = 10
 
     # length per substring
@@ -14,6 +18,7 @@ def main():
     # d = 2.5
 
     # fitness functions format:
+    # util.count_ones
     # logic.deceptive_tight_trap
     # logic.non_deceptive_tight_trap
     # logic.deceptive_loose_trap
@@ -25,6 +30,6 @@ def main():
     # logic.select_two_point
     cross_func = logic.select_uniform
 
-    logic.init(n, fit_func, cross_func, k, d)
+    logic.init(l, n, fit_func, cross_func, k, d)
 
 main()
