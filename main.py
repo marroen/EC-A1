@@ -26,5 +26,6 @@ def main():
     cross_func = logic.select_uniform
 
     logic.init(n, fit_func, cross_func, k, d)
+    #test Mick
 
 main()
