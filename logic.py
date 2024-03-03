@@ -87,6 +87,8 @@ def fam_comp(parents, children, fit_func):
         if ending == 10:
             stop_failure = True
 
+    selected = [selected[2][0], selected[3][0]]
+    return selected
 
 def fam_comp(parents, children, fit_func):
     p_fits = multi_fit_func(parents, fit_func)
