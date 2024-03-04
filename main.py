@@ -29,14 +29,14 @@ def main():
     # logic.non_deceptive_tight_trap                450         170
     # logic.deceptive_loose_trap                    1280        1280
     # logic.non_deceptive_loose_trap                250         1440
-    fit_func = logic.deceptive_loose_trap
+    fit_func = util.count_ones
 
     # crossover functions format:
     # logic.select_uniform
     # logic.select_two_point
     cross_func = logic.select_two_point
 
-    while s != 19:
+    while s != 20:
         logic.init(n, fit_func, cross_func, k, d)
         if not found:
             if logic.stop_succes:                                         #what if the first of the 20 is false but the rest is true
@@ -63,6 +63,7 @@ def main():
                         break
                 else:
                     one_mistake = True
+                    s += 1
 
     if s >= 19:
         print(f"succes with population size {n}")

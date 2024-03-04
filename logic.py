@@ -4,11 +4,12 @@ import random
 
 def init(n, fit_func, cross_func, k, d):
     global ending
-    ending = 0
     global stop_failure
-    stop_failure = False
     global stop_succes
+    ending = 0
+    stop_failure = False
     stop_succes = False
+
     init_population = create_random_population(n)
     run(init_population, fit_func, cross_func, k, d)
 
@@ -25,9 +26,10 @@ def run(init_population, fit_func, cross_func, k, d):
         # TODO: shuffle population per i - done
         random.shuffle(population)
         print("------------")
-        print("generation: ")                   #i was here
+        print(f"population size: {len(population)}")                   #i was here
         print("------------")
         selected = cross_func(population, fit_func)
+                                                                        #counter numvber of generations - reset after new n - average it in main
 
         # flatten list
         population = [Chromosome(x) for xs in selected for x in xs]
@@ -39,14 +41,14 @@ def run(init_population, fit_func, cross_func, k, d):
 def create_random_population(n):
     population = []
     i = 0
-    while i <= n:
+    while i < n:                                                                    # i removed the =
         population.append(Chromosome())
         i += 1
     return population
 
 def select_uniform(population, fit_func):
     selected = []
-    for i in range(0, len(population)-1):
+    for i in range(0, len(population)):                                             # i removed the -1
         if (i % 2 == 0):
             fam = population[i].uniform(population[i+1].data)
             winners = fam_comp(fam[0], fam[1], fit_func, len(population))
@@ -55,7 +57,7 @@ def select_uniform(population, fit_func):
 
 def select_two_point(population, fit_func):
     selected = []
-    for i in range(0, len(population)-1):
+    for i in range(0, len(population)):                                         # i removed the -1
         if (i % 2 == 0):
             fam = population[i].two_point(population[i+1].data)
             final_fam = fam_comp(fam[0], fam[1], fit_func, len(population))
@@ -84,7 +86,7 @@ def fam_comp(parents, children, fit_func, population_size):
                 ending = 0
         elif selected[3][2] == 0:
             ending += 1
-        else:
+        else:                                                                       # i dont think it ever enters this else
             ending = 0
         if ending == (population_size/2):                                            #it worksssss
             stop_failure = True
