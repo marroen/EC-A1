@@ -23,18 +23,18 @@ def main():
     found = False
     one_mistake = False
 
-    # fitness functions format:
-    # util.count_ones
-    # logic.deceptive_tight_trap
-    # logic.non_deceptive_tight_trap
-    # logic.deceptive_loose_trap
-    # logic.non_deceptive_loose_trap
-    fit_func = logic.deceptive_tight_trap
+    # fitness functions format:                     Uniform     two_point
+    # util.count_ones                               30          90
+    # logic.deceptive_tight_trap                    1280        270
+    # logic.non_deceptive_tight_trap                450         170
+    # logic.deceptive_loose_trap                    1280        1280
+    # logic.non_deceptive_loose_trap                250         1440
+    fit_func = logic.deceptive_loose_trap
 
     # crossover functions format:
     # logic.select_uniform
     # logic.select_two_point
-    cross_func = logic.select_uniform
+    cross_func = logic.select_two_point
 
     while s != 19:
         logic.init(l, n, fit_func, cross_func, k, d)
@@ -65,8 +65,8 @@ def main():
                     one_mistake = True
 
     if s >= 19:
-        print(f"succes with population size{n} ")
+        print(f"succes with population size {n}")
     else:
-        print("failure")
+        print(f"failure with population size {n}")                          #soms population size bigger than 1280
 
 main()

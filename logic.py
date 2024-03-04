@@ -1,5 +1,6 @@
 from chromosome import Chromosome
 from util import count_ones, multi_fit_func
+import random
 
 def init(l, n, fit_func, cross_func, k, d):
     global ending
@@ -12,16 +13,17 @@ def init(l, n, fit_func, cross_func, k, d):
     run(l, init_population, fit_func, cross_func, k, d)
 
 def stop_succes(self):
-    return self.value  # Getter method
+    return self.stop_succes  # Getter method
 
 def stop_failure(self):
-    return self.value  # Getter method
+    return self.stop_succes   # Getter method
 
 def run(l, init_population, fit_func, cross_func, k, d):
     population = init_population
     while not stop_succes and not stop_failure:
     #for i in range(0, l):
         # TODO: shuffle population per i
+        random.shuffle(population)
         print("------------")
         print("generation: ")                   #i was here
         print("------------")
@@ -47,7 +49,7 @@ def select_uniform(population, fit_func):
     for i in range(0, len(population)-1):
         if (i % 2 == 0):
             fam = population[i].uniform(population[i+1].data)
-            winners = fam_comp(fam[0], fam[1], fit_func)
+            winners = fam_comp(fam[0], fam[1], fit_func, len(population))
             selected.append(winners)
     return selected
 
@@ -56,12 +58,12 @@ def select_two_point(population, fit_func):
     for i in range(0, len(population)-1):
         if (i % 2 == 0):
             fam = population[i].two_point(population[i+1].data)
-            final_fam = fam_comp(fam[0], fam[1], fit_func)
+            final_fam = fam_comp(fam[0], fam[1], fit_func, len(population))
             selected.append(final_fam)
     return selected
 
 # todo def fam_comp(parents, children, fit_func):
-def fam_comp(parents, children, fit_func):
+def fam_comp(parents, children, fit_func, population_size):
     global ending
     global stop_failure
     global stop_succes
@@ -70,9 +72,9 @@ def fam_comp(parents, children, fit_func):
     c1_fit = fit_func(children[0])
     c2_fit = fit_func(children[1])
 
-    selected = [(parents[0], p1_fit, 0), (parents[1], p2_fit, 0), (children[0], c1_fit, 1), ((children[1], c2_fit), 1)]
+    selected = [(parents[0], p1_fit, 0), (parents[1], p2_fit, 0), (children[0], c1_fit, 1), (children[1], c2_fit, 1)]
     selected = sorted(selected, key=lambda x: (x[1], x[2]))
-    if c1_fit == 40 or c2_fit == 40:
+    if count_ones(selected[3][0]) == 40:
         stop_succes = True
     else:
         if selected[3][2] == 1:
@@ -84,13 +86,14 @@ def fam_comp(parents, children, fit_func):
             ending += 1
         else:
             ending = 0
-        if ending == 10:
+        if ending == (population_size/2):                                            #it worksssss
             stop_failure = True
+            ending = 0
 
     selected = [selected[2][0], selected[3][0]]
     return selected
 
-def fam_comp(parents, children, fit_func):
+"""def fam_comp(parents, children, fit_func):
     p_fits = multi_fit_func(parents, fit_func)
     c_fits = multi_fit_func(children, fit_func)
 
@@ -120,6 +123,8 @@ def fam_comp(parents, children, fit_func):
             #stop_failure = true
 
     return selected
+    
+"""
 
 def deceptive_tight_trap(bitstring):
     k = 4

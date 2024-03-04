@@ -36,12 +36,12 @@ class Chromosome:
             seg1_1p = first_p[0:a]
             seg1_2p = second_p[0:a]
         # second segments
-        seg2_1p = first_p[a:b+1]
-        seg2_2p = second_p[a:b+1]
+        seg2_1p = first_p[a:b]
+        seg2_2p = second_p[a:b]
         # ensure third segments exists
         seg3_1p = bitarray()
         seg3_2p = bitarray()
-        if b < n-1:
+        if b < n:
             seg3_1p = first_p[b:n]
             seg3_2p = second_p[b:n]
 
