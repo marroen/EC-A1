@@ -25,17 +25,17 @@ def run(init_population, fit_func, cross_func, k, d):
     #for i in range(0, l):
         # TODO: shuffle population per i - done
         random.shuffle(population)
-        print("------------")
-        print(f"population size: {len(population)}")                   #i was here
-        print("------------")
+        #print("------------")
+        #print(f"population size: {len(population)}")                   #i was here
+        #print("------------")
         selected = cross_func(population, fit_func)
                                                                         #counter numvber of generations - reset after new n - average it in main
 
         # flatten list
         population = [Chromosome(x) for xs in selected for x in xs]
         #print("population:", population)
-        for chromosome in population:
-            print(chromosome.data)
+        #for chromosome in population:
+            #print(chromosome.data)
     # TODO: visualize bitstring(s) 
 
 def create_random_population(n):
@@ -88,7 +88,7 @@ def fam_comp(parents, children, fit_func, population_size):
             ending += 1
         else:                                                                       # i dont think it ever enters this else
             ending = 0
-        if ending == (population_size/2):                                            #it worksssss
+        if ending == ((population_size/2)*10):                                            #it worksssss
             stop_failure = True
             ending = 0
 
