@@ -2,7 +2,7 @@ from chromosome import Chromosome
 from util import count_ones, multi_fit_func
 import random
 
-def init(l, n, fit_func, cross_func, k, d):
+def init(n, fit_func, cross_func, k, d):
     global ending
     ending = 0
     global stop_failure
@@ -10,7 +10,7 @@ def init(l, n, fit_func, cross_func, k, d):
     global stop_succes
     stop_succes = False
     init_population = create_random_population(n)
-    run(l, init_population, fit_func, cross_func, k, d)
+    run(init_population, fit_func, cross_func, k, d)
 
 def stop_succes(self):
     return self.stop_succes  # Getter method
@@ -18,11 +18,11 @@ def stop_succes(self):
 def stop_failure(self):
     return self.stop_succes   # Getter method
 
-def run(l, init_population, fit_func, cross_func, k, d):
+def run(init_population, fit_func, cross_func, k, d):
     population = init_population
     while not stop_succes and not stop_failure:
     #for i in range(0, l):
-        # TODO: shuffle population per i
+        # TODO: shuffle population per i - done
         random.shuffle(population)
         print("------------")
         print("generation: ")                   #i was here
@@ -62,7 +62,7 @@ def select_two_point(population, fit_func):
             selected.append(final_fam)
     return selected
 
-# todo def fam_comp(parents, children, fit_func):
+# todo def fam_comp(parents, children, fit_func): - done
 def fam_comp(parents, children, fit_func, population_size):
     global ending
     global stop_failure

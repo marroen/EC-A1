@@ -3,7 +3,7 @@ import util
 
 def main():
     # number of generations
-    l = 20                                                         #Yoav         #not needed anymore
+    #l = 20                                                         #Yoav         #not needed anymore
 
     # population size
     n = 10
@@ -37,7 +37,7 @@ def main():
     cross_func = logic.select_two_point
 
     while s != 19:
-        logic.init(l, n, fit_func, cross_func, k, d)
+        logic.init(n, fit_func, cross_func, k, d)
         if not found:
             if logic.stop_succes:                                         #what if the first of the 20 is false but the rest is true
                 n = (n + m)/2
