@@ -49,7 +49,7 @@ def main():
             if logic.stop_failure and not found_first:
                 m = n
                 n = n * 2
-                if n >= 1280:
+                if n > 1280:
                     error = True
             elif logic.stop_failure and found_first:
                 if 10 == l - n:
@@ -64,7 +64,7 @@ def main():
                     if logic.stop_failure and not found_first:
                         m = n
                         n = n * 2
-                        if n >= 1280:
+                        if n > 1280:
                             error = True
                             break
                         break
@@ -92,7 +92,7 @@ def main():
                     if logic.stop_failure and not found_first:
                         m = n
                         n = n * 2
-                        if n >= 1280:
+                        if n > 1280:
                             error = True
                             break
                         break
@@ -118,7 +118,7 @@ def main():
     if found:
         print(f"succes with population size {n}")
     else:
-        print(f"failure with population size {n}")                          #soms population size bigger than 1280
+        print(f"failure with population size 1280")                          #soms population size bigger than 1280
 
     '''fitness_average = [20.22, 22.0, 22.83, 24.5, 25.69, 26.14, 27.87, 28.94, 30.0, 31.0, 32.25, 32.88, 34.0, 34.94, 35.88, 37.19, 37.88, 38.22]
     plt.plot(range(1, len(fitness_average) + 1), fitness_average, marker='o', linestyle='-')
