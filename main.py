@@ -38,7 +38,7 @@ def main():
     # crossover functions format:
     # logic.select_uniform
     # logic.select_two_point
-    cross_func = logic.select_uniform
+    cross_func = logic.select_two_point
 
     while not found and not error:
         logic.init(n, fit_func, cross_func, k, d)
@@ -118,6 +118,21 @@ def main():
     else:
         print(f"failure with population size 1280")                          #soms population size bigger than 1280
 
+    '''fitness_average = [20.22, 22.0, 22.83, 24.5, 25.69, 26.14, 27.87, 28.94, 30.0, 31.0, 32.25, 32.88, 34.0, 34.94, 35.88, 37.19, 37.88, 38.22]
+    plt.plot(range(1, len(fitness_average) + 1), fitness_average, marker='o', linestyle='-')
+
+    # Set the labels for x and y axes
+    plt.xlabel('Index')
+    plt.ylabel('Fitness Average')
+
+    # Set the title of the plot
+    plt.title('Fitness Average')
+
+    # Display the grid
+    plt.grid(True)
+
+    # Show the plot
+    plt.show()'''
 main()
 
 """
