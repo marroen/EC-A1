@@ -32,13 +32,13 @@ def main():
     # logic.deceptive_tight_trap                    1280        160
     # logic.non_deceptive_tight_trap                160         90
     # logic.deceptive_loose_trap                    1280        1280
-    # logic.non_deceptive_loose_trap                200         1280
+    # logic.non_deceptive_loose_trap                200         840 -- ook opties proberen waar 1280
     fit_func = logic.non_deceptive_loose_trap
 
     # crossover functions format:
     # logic.select_uniform
     # logic.select_two_point
-    cross_func = logic.select_two_point
+    cross_func = logic.select_uniform
 
     while not found and not error:
         logic.init(n, fit_func, cross_func, k, d)
@@ -47,7 +47,7 @@ def main():
             if logic.stop_failure and not found_first:
                 m = n
                 n = n * 2
-                if n >= 1280:
+                if n > 1280:
                     error = True
             elif logic.stop_failure and found_first:
                 if 10 == l - n:
@@ -62,7 +62,7 @@ def main():
                     if logic.stop_failure and not found_first:
                         m = n
                         n = n * 2
-                        if n >= 1280:
+                        if n > 1280:
                             error = True
                             break
                         break
@@ -90,7 +90,7 @@ def main():
                     if logic.stop_failure and not found_first:
                         m = n
                         n = n * 2
-                        if n >= 1280:
+                        if n > 1280:
                             error = True
                             break
                         break
@@ -113,10 +113,10 @@ def main():
                         n = l
                         found = True
 
-    if found:
+    if found and n != 1280:
         print(f"succes with population size {n}")
     else:
-        print(f"failure with population size {n}")                          #soms population size bigger than 1280
+        print(f"failure with population size 1280")                          #soms population size bigger than 1280
 
 main()
 

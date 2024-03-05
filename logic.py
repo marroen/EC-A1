@@ -26,7 +26,7 @@ def run(init_population, fit_func, cross_func, k, d):
         # TODO: shuffle population per i - done
         random.shuffle(population)
         #print("------------")
-        #print(f"population size: {len(population)}")                   #i was here
+        print(f"population size: {len(population)}")                   #i was here
         #print("------------")
         selected = cross_func(population, fit_func)
                                                                         #counter numvber of generations - reset after new n - average it in main
@@ -76,6 +76,7 @@ def fam_comp(parents, children, fit_func, population_size):
 
     selected = [(parents[0], p1_fit, 0), (parents[1], p2_fit, 0), (children[0], c1_fit, 1), (children[1], c2_fit, 1)]
     selected = sorted(selected, key=lambda x: (x[1], x[2]))
+
     if count_ones(selected[3][0]) == 40:
         stop_succes = True
     else:
