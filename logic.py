@@ -1,19 +1,21 @@
 import math
-
 from chromosome import Chromosome
 from util import count_ones, multi_fit_func
 import random
 
-def init(n, fit_func, cross_func, k, d):
+def init(n, fit_func, cross_func):
     global ending
+    global generation
     global stop_failure
     global stop_succes
+
     ending = 0
+    generation = 0
     stop_failure = False
     stop_succes = False
 
     init_population = create_random_population(n)
-    run(init_population, fit_func, cross_func, k, d)
+    run(init_population, fit_func, cross_func)
 
 def stop_succes(self):
     return self.stop_succes  # Getter method
@@ -21,9 +23,12 @@ def stop_succes(self):
 def stop_failure(self):
     return self.stop_succes   # Getter method
 
-def run(init_population, fit_func, cross_func, k, d):
+def run(init_population, fit_func, cross_func):
+    global generation
     population = init_population
     generation = 0
+
+    #needed for deliverables 1,2 and 3
     '''error_list = []
     correct_list = []
     prop_list = []
@@ -33,13 +38,15 @@ def run(init_population, fit_func, cross_func, k, d):
     schema1_fit_average = []
     schema0_fit_sd = []
     schema1_fit_sd = []'''
+
     while not stop_succes and not stop_failure:
         generation += 1
-        #for i in range(0, l):
-        # TODO: shuffle population per i - done
+
+    #for i in range(0, l):                                              #needed for deliverables 1,2 and 3
+
         random.shuffle(population)
         #print("------------")
-        print(f"population size: {len(population)}")                   #i was here
+        #print(f"population size: {len(population)}")
         #print("------------")
         selected = cross_func(population, fit_func)
                                                                         #counter numvber of generations - reset after new n - average it in main
@@ -62,8 +69,8 @@ def run(init_population, fit_func, cross_func, k, d):
         '''for chromosome in population:
             print(chromosome.data)'''
 
-    print("\n")
-    print("number of generations: ", generation)
+    #print("\n")
+    #print("number of generations: ", generation)
     '''print("error list: ", error_list)
     print("correct list: ", correct_list)
     print("prop list: ", prop_list)
@@ -73,7 +80,6 @@ def run(init_population, fit_func, cross_func, k, d):
     print("schema1 fitness average: ", schema1_fit_average)
     print("schema0 fitness standard deviation: ", schema0_fit_sd)
     print("schema1 fitness standard deviation: ", schema1_fit_sd)'''
-    # TODO: visualize bitstring(s) 
 
 def create_random_population(n):
     population = []
@@ -101,7 +107,6 @@ def select_two_point(population, fit_func):
             selected.append(final_fam)
     return selected
 
-# todo def fam_comp(parents, children, fit_func): - done
 def fam_comp(parents, children, fit_func, population_size):
     global ending
     global stop_failure
@@ -124,9 +129,9 @@ def fam_comp(parents, children, fit_func, population_size):
                 ending = 0
         elif selected[3][2] == 0:
             ending += 1
-        else:                                                                       # i dont think it ever enters this else
+        else:
             ending = 0
-        if ending == ((population_size/2)*10):                                            #it worksssss
+        if ending == ((population_size/2)*10):
             stop_failure = True
             ending = 0
 
