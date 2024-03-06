@@ -35,7 +35,7 @@ def run(init_population, fit_func, cross_func, k, d):
     schema1_fit_sd = []'''
     while not stop_succes and not stop_failure:
         generation += 1
-    #for i in range(0, l):
+        #for i in range(0, l):
         # TODO: shuffle population per i - done
         random.shuffle(population)
         #print("------------")
